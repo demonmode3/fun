@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="trans.png" type="image/x-icon"> 
+    <title>DEMON MODE</title>
+	<style type="text/css">
+		* {
+		    user-select: none; /* Non-standard syntax for most browsers */
+		    -webkit-user-select: none; /* Safari */
+		    -moz-user-select: none; /* Firefox */
+		    -ms-user-select: none; /* Internet Explorer/Edge */
+			overflow: hidden;
+		}
+		
+		html, body {
+			min-height:100vh;
+		}
+		
+		body {
+			background:url("bg.png");
+			margin:0;
+			overflow: hidden;
+		}
+		
+		.thisIsNotWhatPodcastsAre {
+			height:100%;
+			width:100%;
+			
+			min-height:100vh;
+			position: relative;
+			
+			img {
+	            position: absolute;
+				transition: all .5s ease;
+				animation: fuckICE .7s infinite alternate;
+			}
+		}
+		
+        @keyframes fuckICE {
+            0% {
+				transform:scale(0.35);
+                filter:contrast(130%) saturate(100%);
+            }
+            100% {
+				transform:scale(1.25);
+                filter:contrast(300%) saturate(110%);
+            }
+        }
+	</style>
+</head>
+<body>
+	<div class="thisIsNotWhatPodcastsAre"></div>
+	
+    <script>
+	    const container = document.querySelector('.thisIsNotWhatPodcastsAre');
+
+	    function createImage() {
+	        const img = document.createElement('img');
+	        img.src = 'trans-rights-or-rights-nights.png';
+	        img.style.position = 'absolute';
+	        container.appendChild(img);
+	        return img;
+	    }
+
+	    function moveImage(img) {
+	        const containerWidth = container.clientWidth;
+	        const containerHeight = container.clientHeight;
+
+	        const randomX = Math.random() * (containerWidth);
+	        const randomY = Math.random() * (containerHeight);
+
+	        img.style.left = `${randomX}px`;
+	        img.style.top = `${randomY}px`;
+	    }
+
+	    const images = [];
+	    for (let i = 0; i < 75; i++) {
+			setTimeout(() => {
+		        const img = createImage();
+		        images.push(img);
+		        moveImage(img);
+				
+			    setInterval(() => {
+			        moveImage(images[i]);
+			    },  Math.floor(Math.random() * 400));
+			}, Math.floor(Math.random() * (900 )) + (10*i))
+	    }
+    </script>
+</body>
+</html>
